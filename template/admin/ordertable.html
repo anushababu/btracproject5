@@ -1,0 +1,38 @@
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Tabels</li>
+            </ol>
+
+            <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">UserName</th>
+      <th scope="col">ProductName</th>
+      <th scope="col">Image</th>
+      <th scope="col">TotalAmount</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+    <tbody>
+  	{% for x in details %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{x.uid.name}}</td>
+      <td>{{x.pid.name}}</td>
+      <td><img src="{{x.pid.image.url}}" width="200" height="200"></td>
+      <td>{{x.totalamount}}</td>
+      <td>{{x.quantity}}</td>
+      <td>{{x.status}}</td>
+      <!-- <td><a href="/admin_update/?uid={{x.id}}"><i class="fa fa-edit"></i></a></td>
+      <td><a href="/admin_delete/?uidd={{x.id}}"><i class="fa fa-trash"></i></a></td> -->
+    </tr>  
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+
+{% endblock %}

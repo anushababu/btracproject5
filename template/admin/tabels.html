@@ -1,0 +1,54 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!--heder end here-->
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Tabels</li>
+            </ol>
+
+            <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Gender</th>
+      <th scope="col">category</th>
+    </tr>
+  </thead>
+    <tbody>
+  	{% for x in details %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{x.name}}</td>
+      <td>{{x.price}}</td>
+      <td>{{x.desc}}</td>
+      {% if x.image %}
+      <td><img src="{{x.image.url}}" width="200" height="200"></td>
+      {% else %}
+      {% endif %}
+      <td>{{x.gender}}</td>
+      <td>{{x.category}}</td>
+      <td><a href="/admin_update/?uid={{x.id}}"><i class="fa fa-edit"></i></a></td>
+      <td><a href="/admin_delete/?uidd={{x.id}}"><i class="fa fa-trash"></i></a></td>
+    </tr>  
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+
+				<!-- tables -->
+
+{% endblock %}
+<!--inner block end here-->
+<!--copy rights start here-->
+

@@ -1,0 +1,43 @@
+{% extends 'admin/headerfooter.html' %}
+{% block content %}
+<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Tabels</li>
+            </ol>
+
+            <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <!-- <th scope="col">Productname</th> -->
+      <!-- <th scope="col">Image</th> -->
+      <th scope="col">Status</th>
+      <th scope="col">Total</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+     
+    </tr>
+  </thead>
+    <tbody>
+  	{% for x in details %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{x.uid.name}}</td>
+      <!-- <td>{{x.pid.name}}</td> -->
+      <!-- {% if x.image %} -->
+     <!--  <td><img src="{{x.pid.image.url}}" width="200" height="200"></td> -->
+      <!-- {% else %} -->
+      <!-- {% endif %} -->
+      <td>{{x.status}}</td>
+      <td>{{x.total}}</td>
+      <td>{{x.date}}</td>
+      <td>{{x.time}}</td>
+      <td><a href="/downloadpdf/?pid={{x.id}}"><i class="fa fa-file-pdf-o"></i></a></td>
+     <!--  <td><a href="/admin_delete/?uidd={{x.id}}"><i class="fa fa-trash"></i></a></td> -->
+    </tr>  
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+{% endblock %}

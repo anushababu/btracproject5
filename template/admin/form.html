@@ -1,0 +1,81 @@
+    {% extends 'admin/headerfooter.html' %}
+    {% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script >	
+function viewdata()
+{
+	//alert("a");
+	var d=document.getElementById('user').value;
+	$.ajax({
+
+				url:'/ajaxview/',
+				data:
+				{
+					'uid':d
+				},
+				datatype: 'json',
+				success: function(data)
+				{
+					document.getElementById("nameid").innerHTML=data.aa;
+					document.getElementById("emailid").innerHTML=data.bb;
+					document.getElementById("phoneid").innerHTML=data.cc;
+					
+                 }
+
+
+			});
+}
+</script>	
+
+
+
+    <form> 
+    {% csrf_token %} 
+    <div class="form-group">
+    <label for="exampleInputName">Name</label>
+    <label for="user"></label>
+  <select name="user" id="user" onchange="viewdata();">
+    <option> Select One</option>
+    {% for x in details %}
+    <option value="{{x.id}}">{{x.name}}</option>
+    {% endfor %}
+  </select>
+</div>
+</form>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+    <tbody>
+  	
+    <tr>
+      <th scope="row"></th>
+      <td id="nameid"></td>
+      <td id="emailid"></td>
+      <td id="phoneid"></td>
+    </tr>  
+    
+    
+  </tbody>
+</table>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

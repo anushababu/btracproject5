@@ -1,0 +1,94 @@
+ {% extends 'admin/headerfooter.html' %}
+    {% block content %}
+	<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin_index/">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i> Input</li>
+            </ol>
+		<!--grid-->
+ 	<div class="grid-form">
+ 		<div class="grid-form1">
+ 		<h4 style="color:red;text-align:center;">{{error}}</h4>	
+ 		<h2 id="forms-example" class="">Basic Form</h2>
+    {% for x in details %}
+ 		<form action="/admin_update/?uid={{x.id}}"  method="POST" enctype="multipart/form-data">
+ 		{% csrf_token %} 
+  <div class="form-group">
+    <label for="exampleInputName">Name</label>
+    <input type="name" name="name" class="form-control" id="exampleInputName" placeholder="ProductName" value="{{x.name}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputName">Price</label>
+    <input type="Price" name="price" class="form-control" id="exampleInputName" placeholder="ProductPrice" value="{{x.price}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputName">Description</label>
+    <input type="text" name="desc" class="form-control" id="exampleInputName" placeholder="Description" value="{{x.desc}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Images</label>
+    {% if x.image %}
+    <img src="{{x.image.url}}" width="200" height="200">
+    {% else %}
+    {% endif %}
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">DO you want update image</label>
+    <div class="radio">
+      <label>
+        <input type="radio" name="imgup" value="Yes" onchange="hide();" id="chkYes" required>
+        Yes
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="imgup" value="no" onchange="hide();" checked required>
+        No
+      </label>
+    </div>
+    <div class="form-group" id="fileimg" style="display: none;">
+      <label for="img">File Input</label>
+      <input type="file" name="images" id="img">
+    </div>
+  <div class="form-group">
+    <label for="exampleInputName">Gender</label><br>
+     <input type="radio"  name="gender" value="Male" {% if x.gender == "Male" %} checked {%else %} {% endif %}required>
+     <label >Male</label><br>
+     <input type="radio"  name="gender" value="Female" {% if x.gender == "Female" %} checked {%else %} {% endif %}required>
+     <label >Female</label><br>
+     <input type="radio"  name="gender" value="Kids" {% if x.gender == "Kids" %} checked {%else %} {% endif %}required>
+     <label >Kids</label><br>
+
+
+  </div>  
+  <div class="form-group">
+    <label for="exampleInputName">Category</label>
+    <input type="text" name="category" class="form-control" id="exampleInputName" placeholder="Category" value="{{x.category}}">
+  </div>
+  
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% endfor %}
+</div>
+<div class="inner-block">
+
+</div>
+
+ <script type="text/javascript">
+   function hide(){
+       var chkYes = document.getElementById("chkYes");
+       var filediv = document.getElementById("fileimg");
+
+   filediv.style.display = chkYes.checked ? "block" : "none"
+   if (chkYes.checked){
+      var img = document.getElementById("img").required = true;
+   }
+   else{
+      var img = document.getElementById("img").required = false;
+   }
+   }
+ </script>
+{% endblock %}
